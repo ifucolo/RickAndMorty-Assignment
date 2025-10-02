@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.ifucolo.rickandmorty.data.local.dao.CharacterDao
 import com.ifucolo.rickandmorty.data.local.dao.EpisodeDao
+import com.ifucolo.rickandmorty.data.local.dao.PageRemoteKeysDao
 import com.ifucolo.rickandmorty.data.local.entity.CharacterEntity
 import com.ifucolo.rickandmorty.data.local.entity.EpisodeEntity
 import com.ifucolo.rickandmorty.data.local.entity.converter.Converters
@@ -20,6 +21,7 @@ import com.ifucolo.rickandmorty.data.local.entity.converter.Converters
 abstract class RickAndMortyDb : RoomDatabase() {
     abstract fun episodeDao(): EpisodeDao
     abstract fun characterDao(): CharacterDao
+    abstract fun pageRemoteKeysDao(): PageRemoteKeysDao
 
     companion object {
         fun createDatabase(context: Context): RickAndMortyDb {

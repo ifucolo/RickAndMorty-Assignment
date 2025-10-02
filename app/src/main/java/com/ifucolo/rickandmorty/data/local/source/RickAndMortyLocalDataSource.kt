@@ -8,13 +8,14 @@ import com.ifucolo.rickandmorty.data.local.entity.EpisodeEntity
 import javax.inject.Inject
 
 interface RickAndMortyLocalDataSource {
+    // Episode operations
     fun episodesPagingSource(): PagingSource<Int, EpisodeEntity>
     suspend fun insertEpisodes(items: List<EpisodeEntity>)
     suspend fun clearEpisodes()
     suspend fun replaceAllEpisodes(items: List<EpisodeEntity>)
     suspend fun episodesCount(): Int
 
-
+    // Character operations
     suspend fun getCharacter(id: Int): CharacterEntity?
     suspend fun upsertCharacter(entity: CharacterEntity)
     suspend fun upsertCharacters(items: List<CharacterEntity>)
