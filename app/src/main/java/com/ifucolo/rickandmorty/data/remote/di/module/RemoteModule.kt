@@ -1,12 +1,17 @@
 package com.ifucolo.rickandmorty.data.remote.di.module
 
+import android.content.Context
+import android.net.ConnectivityManager
 import com.ifucolo.rickandmorty.data.remote.api.RickAndMortyApi
 import com.ifucolo.rickandmorty.data.remote.di.qualifiers.RickAndMortyApiBaseUrl
 import com.ifucolo.rickandmorty.data.remote.di.qualifiers.RickAndMortyRetrofit
+import com.ifucolo.rickandmorty.data.remote.network.NetworkMonitor
+import com.ifucolo.rickandmorty.data.remote.network.NetworkMonitorImpl
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
 import okhttp3.HttpUrl
@@ -35,12 +40,12 @@ class RemoteModule {
     @Provides
     @Singleton
     @RickAndMortyApiBaseUrl
-    fun provideRickAndMortyApiBaseUrl(): HttpUrl = "https://rickandmortyapi.com/api".toHttpUrl()
+    fun provideRickAndMortyApiBaseUrl(): HttpUrl = "https://rickandmortyapi.com/api/".toHttpUrl()
 
 
     @Provides
     @Singleton
-    @RickAndMortyApiBaseUrl
+    @RickAndMortyRetrofit
     fun provideRetrofit(
         client: OkHttpClient,
         @RickAndMortyApiBaseUrl baseUrl: HttpUrl
@@ -64,4 +69,19 @@ class RemoteModule {
     @Singleton
     fun provideOrdersApi(@RickAndMortyRetrofit retrofit: Retrofit): RickAndMortyApi =
         retrofit.create()
+
+    @Provides
+    @Singleton
+    fun provideConnectivityManager(@ApplicationContext context: Context): ConnectivityManager {
+        return context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    }
+
+    @Provides
+    @Singleton
+    fun provideNetworkMonitor(
+        connectivityManager: ConnectivityManager
+    ): NetworkMonitor {
+        return NetworkMonitorImpl(connectivityManager = connectivityManager)
+    }
+
 }

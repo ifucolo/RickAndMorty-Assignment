@@ -10,10 +10,11 @@ import com.ifucolo.rickandmorty.data.local.dao.EpisodeDao
 import com.ifucolo.rickandmorty.data.local.dao.PageRemoteKeysDao
 import com.ifucolo.rickandmorty.data.local.entity.CharacterEntity
 import com.ifucolo.rickandmorty.data.local.entity.EpisodeEntity
+import com.ifucolo.rickandmorty.data.local.entity.PageRemoteKeysEntity
 import com.ifucolo.rickandmorty.data.local.entity.converter.Converters
 
 @Database(
-    entities = [EpisodeEntity::class, CharacterEntity::class],
+    entities = [EpisodeEntity::class, CharacterEntity::class, PageRemoteKeysEntity::class],
     version = 1,
     exportSchema = true
 )

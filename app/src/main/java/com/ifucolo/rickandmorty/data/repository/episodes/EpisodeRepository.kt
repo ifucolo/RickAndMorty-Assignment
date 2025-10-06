@@ -1,4 +1,4 @@
-package com.ifucolo.rickandmorty.data.repository
+package com.ifucolo.rickandmorty.data.repository.episodes
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
@@ -29,7 +29,7 @@ class EpisodeRepositoryImpl @Inject constructor(
         Pager(
             config = PagingConfig(
                 pageSize = 20,
-                initialLoadSize = 40,
+                initialLoadSize = 20,
                 prefetchDistance = 2,
                 enablePlaceholders = false
             ),

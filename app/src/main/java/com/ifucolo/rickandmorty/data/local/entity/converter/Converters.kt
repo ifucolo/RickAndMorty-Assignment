@@ -1,15 +1,22 @@
 package com.ifucolo.rickandmorty.data.local.entity.converter
 
-import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 
-@ProvidedTypeConverter
 class Converters {
-    @TypeConverter
-    fun listIntToString(list: List<Int>): String = list.joinToString(",")
 
+    // This tells Room how to convert a List of Integers to a String
     @TypeConverter
-    fun stringToListInt(csv: String): List<Int> =
-        if (csv.isBlank()) emptyList()
-        else csv.split(",").mapNotNull { it.toIntOrNull() }
+    fun fromIntList(characterIds: List<Int>): String {
+        return characterIds.joinToString(separator = ",")
+    }
+
+    // This tells Room how to convert a String back to a List of Integers
+    @TypeConverter
+    fun toIntList(characterIdsString: String): List<Int> {
+        // Handle empty or blank strings to avoid errors
+        if (characterIdsString.isBlank()) {
+            return emptyList()
+        }
+        return characterIdsString.split(',').map { it.toInt() }
+    }
 }
