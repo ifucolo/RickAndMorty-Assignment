@@ -3,7 +3,7 @@ package com.ifucolo.rickandmorty.data.local.dao
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.ifucolo.rickandmorty.data.local.dao.mock.pageRemoteKeysEntity
+import com.ifucolo.rickandmorty.data.local.mock.pageRemoteKeysEntity
 import com.ifucolo.rickandmorty.data.local.database.RickAndMortyDb
 import kotlinx.coroutines.test.runTest
 import org.junit.After

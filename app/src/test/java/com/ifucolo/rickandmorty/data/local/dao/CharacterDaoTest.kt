@@ -3,7 +3,7 @@ package com.ifucolo.rickandmorty.data.local.dao
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.ifucolo.rickandmorty.data.local.dao.mock.characterEntity
+import com.ifucolo.rickandmorty.data.local.mock.characterEntity
 import com.ifucolo.rickandmorty.data.local.database.RickAndMortyDb
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -32,7 +32,7 @@ class CharacterDaoTest {
 
     @Test
     fun insert_character() = runTest {
-        dao.upsert(characterEntity)
+        dao.upsert(characterEntity())
         val loaded = dao.getById(1)
         assertNotNull(loaded)
         assert(loaded.name == "Rick")
@@ -41,9 +41,9 @@ class CharacterDaoTest {
     @Test
     fun insert_characters() = runTest {
         val list = listOf(
-            characterEntity,
-            characterEntity.copy(id = 2, name = "Morty"),
-            characterEntity.copy(id = 3, name = "Summer"),
+            characterEntity(),
+            characterEntity(id = 2, name = "Morty"),
+            characterEntity(id = 3, name = "Summer"),
         )
         dao.upsertAll(list)
         val loaded = dao.getById(2)

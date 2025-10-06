@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.paging.PagingSource
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.ifucolo.rickandmorty.data.local.dao.mock.episodeEntity
-import com.ifucolo.rickandmorty.data.local.dao.mock.episodesList
+import com.ifucolo.rickandmorty.data.local.mock.episodeEntity
+import com.ifucolo.rickandmorty.data.local.mock.episodesList
 import com.ifucolo.rickandmorty.data.local.database.RickAndMortyDb
 import kotlinx.coroutines.test.runTest
 import org.junit.After
