@@ -1,7 +1,5 @@
-// data/repo/EpisodesRemoteMediator.kt
 package com.ifucolo.rickandmorty.data.repository.paging
 
-import androidx.core.net.toUri
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -37,7 +35,6 @@ class EpisodesRemoteMediator @Inject constructor(
     private val refreshPrefsDataSource: RefreshPrefsDataSource,
     private val networkMonitor: NetworkMonitor
 ) : RemoteMediator<Int, EpisodeEntity>() {
-
 
     override suspend fun initialize(): InitializeAction {
         val lastRefreshTime = refreshPrefsDataSource.lastRefreshFlow().first()

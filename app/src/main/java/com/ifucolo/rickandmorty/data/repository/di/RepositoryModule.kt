@@ -4,6 +4,8 @@ import com.ifucolo.rickandmorty.data.repository.characters.CharactersRepository
 import com.ifucolo.rickandmorty.data.repository.characters.CharactersRepositoryImpl
 import com.ifucolo.rickandmorty.data.repository.episodes.EpisodeRepository
 import com.ifucolo.rickandmorty.data.repository.episodes.EpisodeRepositoryImpl
+import com.ifucolo.rickandmorty.data.repository.paging.PagerFactory
+import com.ifucolo.rickandmorty.data.repository.paging.PagerFactoryImpl
 import com.ifucolo.rickandmorty.data.repository.refresh.EpisodesRefresher
 import com.ifucolo.rickandmorty.data.repository.refresh.EpisodesRefresherImpl
 import dagger.Binds
@@ -33,4 +35,11 @@ abstract class RepositoryModule {
     abstract fun bindEpisodesRefresher(
         episodesRefresherImpl: EpisodesRefresherImpl
     ): EpisodesRefresher
+
+
+    @Binds
+    @Singleton
+    abstract fun bindEpisodesRefresher(
+        PagerFactoryImpl: PagerFactoryImpl
+    ): PagerFactory
 }

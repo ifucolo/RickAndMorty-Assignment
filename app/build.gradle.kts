@@ -107,6 +107,9 @@ dependencies {
     testImplementation(libs.mockwebserver)
     testImplementation(libs.robolectric)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.androidx.work.testing)
 
     // --- Instrumented tests (src/androidTest) ---
     androidTestImplementation(libs.androidx.junit)

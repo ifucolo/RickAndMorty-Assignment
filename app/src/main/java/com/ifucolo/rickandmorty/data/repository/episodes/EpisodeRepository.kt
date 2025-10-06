@@ -8,6 +8,7 @@ import androidx.paging.map
 import com.ifucolo.rickandmorty.data.local.source.RickAndMortyLocalDataSource
 import com.ifucolo.rickandmorty.data.mapper.toDomain
 import com.ifucolo.rickandmorty.data.repository.paging.EpisodesRemoteMediator
+import com.ifucolo.rickandmorty.data.repository.paging.PagerFactory
 import com.ifucolo.rickandmorty.domain.Episode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -21,18 +22,13 @@ interface EpisodeRepository {
 class EpisodeRepositoryImpl @Inject constructor(
     //use provider to always have a fresh instance, because the pager is tied to a single page lifecycle, and resuing it can cause issues, like crashes, race conditions, etc.
     private val episodesRemoteMediator: Provider<EpisodesRemoteMediator>,
-    private val local: RickAndMortyLocalDataSource
+    private val local: RickAndMortyLocalDataSource,
+    private val pagerFactory: PagerFactory
 ) : EpisodeRepository {
 
     @OptIn(ExperimentalPagingApi::class)
     override fun pagedEpisodes(): Flow<PagingData<Episode>> =
-        Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                initialLoadSize = 20,
-                prefetchDistance = 2,
-                enablePlaceholders = false
-            ),
+        pagerFactory.create(
             remoteMediator = episodesRemoteMediator.get(),
             pagingSourceFactory = { local.episodesPagingSource() }
         ).flow.map { pagingData ->

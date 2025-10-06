@@ -3,7 +3,6 @@ package com.ifucolo.rickandmorty.data.remote.source
 import com.ifucolo.rickandmorty.data.remote.api.RickAndMortyApi
 import com.ifucolo.rickandmorty.data.remote.dto.ApiResult
 import com.ifucolo.rickandmorty.data.remote.dto.CharacterDto
-import com.ifucolo.rickandmorty.data.remote.dto.EpisodeDto
 import com.ifucolo.rickandmorty.data.remote.dto.EpisodePageDto
 import javax.inject.Inject
 
