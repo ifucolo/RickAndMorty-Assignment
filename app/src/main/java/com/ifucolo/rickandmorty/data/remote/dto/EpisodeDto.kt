@@ -1,5 +1,6 @@
 package com.ifucolo.rickandmorty.data.remote.dto
 
+import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -7,7 +8,10 @@ import kotlinx.serialization.Serializable
 data class EpisodePageDto(
     val info: InfoDto,
     val results: List<EpisodeDto>
-)
+) {
+    fun nextPage(): Int? =
+        info.next?.toUri()?.getQueryParameter("page")?.toIntOrNull()
+}
 
 @Serializable
 data class InfoDto(

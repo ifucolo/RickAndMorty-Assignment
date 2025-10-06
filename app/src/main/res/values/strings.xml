@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">RickAndMorty</string>
+
+    <string name="error_message">Something went wrong</string>
+    <string name="try_again_later_message">Please try again later</string>
+    <string name="no_internet_connection_message">No internet connection. Please try again once you are back online.</string>
+    <string name="retryText">Retry</string>
+    <string name="loadingMessage">Just a moment,\ngetting everything ready for you…</string>
+
+    <string name="endOfTheList">"You've reached the end of the list!"</string>
+    <string name="episodeCode">episode Code: %1$s</string>
+    <string name="airDate">Air date: %1$s </string>
+    <string name="characterId">Character ID: %1$d</string>
+
+
+    <string name="label_status">Status</string>
+    <string name="label_species">Species</string>
+    <string name="label_origin">Origin</string>
+    <string name="label_episode_count">Appears In</string>
+    <string name="empty_characters">There is not characters for this Episode</string>
+
+    <string name="exported_success">Success exported</string>
+    <string name="exported_error">Error to export</string>
+    <string name="last_refreshed">Last refreshed: %1$s</string>
 </resources>
