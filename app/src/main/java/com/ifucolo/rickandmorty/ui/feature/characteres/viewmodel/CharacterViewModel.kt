@@ -13,34 +13,38 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CharacterViewModel @Inject constructor(
+open class CharacterViewModel @Inject constructor(
     private val repository: CharactersRepository
 ): ViewModel() {
 
     private val _state = MutableStateFlow<UiState>(UiState.Loading)
-    val state: StateFlow<UiState> = _state
+    open val state: StateFlow<UiState> = _state
 
-    fun load(id: Int) = viewModelScope.launch {
-        _state.value = UiState.Loading
-        runCatching { repository.getCharacter(id) }
-            .onSuccess { domainResult ->
-                when(domainResult) {
-                    DomainResult.Empty -> {
-                        _state.update { UiState.Error(Throwable("Character not found")) }
+    open fun load(id: Int) {
+        viewModelScope.launch {
+            _state.value = UiState.Loading
+            runCatching { repository.getCharacter(id) }
+                .onSuccess { domainResult ->
+                    when(domainResult) {
+                        DomainResult.Empty -> {
+                            _state.update { UiState.Error(Throwable("Character not found")) }
+                        }
+                        is DomainResult.Error -> {
+                            _state.update { UiState.Error(domainResult.error) }
+                        }
+                        DomainResult.Loading -> {
+                            _state.update { UiState.Loading }
+                        }
+                        is DomainResult.Success<CharacterDetail> -> {
+                            _state.update { UiState.Data(domainResult.data) }
+                        }
                     }
-                    is DomainResult.Error -> {
-                        _state.update { UiState.Error(domainResult.error) }
-                    }
-                    DomainResult.Loading -> {
-                        _state.update { UiState.Loading }
-                    }
-                    is DomainResult.Success<CharacterDetail> -> {
-                        _state.update { UiState.Data(domainResult.data) }
-                    }
+
                 }
-
-            }
-            .onFailure { _state.value = UiState.Error(it) }
+                .onFailure {
+                    _state.value = UiState.Error(it)
+                }
+        }
     }
 
     sealed interface UiState {

@@ -1,6 +1,5 @@
 package com.ifucolo.rickandmorty.ui.feature.episode.episodes.viewmodel
 
-import androidx.activity.result.launch
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -24,19 +23,19 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class EpisodesViewModel @Inject constructor(
+open class EpisodesViewModel @Inject constructor(
     repository: EpisodeRepository,
     refreshPrefsDataSource: RefreshPrefsDataSource,
     private val networkMonitor: NetworkMonitor
 ): ViewModel() {
 
     private val _uiEvent = Channel<UiEvent>()
-    val uiEvent = _uiEvent.receiveAsFlow()
+    open val uiEvent = _uiEvent.receiveAsFlow()
 
-    val episodes: Flow<PagingData<Episode>> =
+    open val episodes: Flow<PagingData<Episode>> =
         repository.pagedEpisodes().cachedIn(viewModelScope)
 
-    val lastRefreshed: StateFlow<String> =
+    open val lastRefreshed: StateFlow<String> =
         refreshPrefsDataSource.lastRefreshFlow()
             .map { epoch ->
                 if (epoch == 0L) "-"
