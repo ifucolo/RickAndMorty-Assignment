@@ -9,22 +9,22 @@ import androidx.work.WorkerParameters
 import androidx.work.testing.TestListenableWorkerBuilder
 import com.ifucolo.rickandmorty.data.datastore.RefreshPrefsDataSource
 import com.ifucolo.rickandmorty.data.repository.refresh.EpisodesRefresher
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import org.mockito.kotlin.any
 import org.mockito.kotlin.doThrow
-import org.mockito.Mockito.times // <-- Correct import
-import org.mockito.Mockito.verify // <-- Correct import
 import org.mockito.kotlin.verifyNoInteractions
 import org.mockito.kotlin.whenever
+import org.robolectric.RobolectricTestRunner
 
 
-@RunWith(MockitoJUnitRunner::class)
+@RunWith(RobolectricTestRunner::class)
 class RefreshEpisodesWorkerTest {
 
     @Mock
@@ -38,10 +38,12 @@ class RefreshEpisodesWorkerTest {
     @Before
     fun setUp() {
         context = ApplicationProvider.getApplicationContext()
+        mockRefresher = org.mockito.Mockito.mock(EpisodesRefresher::class.java)
+        mockPrefs = org.mockito.Mockito.mock(RefreshPrefsDataSource::class.java)
     }
 
     @Test
-    fun `doWork returns Success when refresher and prefs succeed`() = runBlocking {
+    fun `doWork returns Success when refresher and prefs succeed`() = runTest {
         val worker = TestListenableWorkerBuilder<RefreshEpisodesWorker>(context)
             .setWorkerFactory(TestRefreshWorkerFactory(mockRefresher, mockPrefs))
             .build()
@@ -57,7 +59,7 @@ class RefreshEpisodesWorkerTest {
     }
 
     @Test
-    fun `doWork returns Retry when refresher throws an exception`() = runBlocking {
+    fun `doWork returns Retry when refresher throws an exception`() = runTest {
         whenever(mockRefresher.refresh(any())).doThrow(RuntimeException("Network failed"))
 
         val worker = TestListenableWorkerBuilder<RefreshEpisodesWorker>(context)
@@ -88,8 +90,8 @@ class TestRefreshWorkerFactory(
         return RefreshEpisodesWorker(
             context = appContext,
             params = workerParameters,
-            refresher = refresher, // Provide the mock
-            prefs = prefs          // Provide the mock
+            refresher = refresher,
+            prefs = prefs
         )
     }
 }
