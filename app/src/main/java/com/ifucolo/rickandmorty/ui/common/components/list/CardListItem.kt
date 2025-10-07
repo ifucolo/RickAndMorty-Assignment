@@ -27,11 +27,12 @@ data class CardListItemData(
 
 @Composable
 fun CardListItem(
+    modifier: Modifier = Modifier,
     data: CardListItemData,
     onCardClick: () -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         onClick = onCardClick,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {

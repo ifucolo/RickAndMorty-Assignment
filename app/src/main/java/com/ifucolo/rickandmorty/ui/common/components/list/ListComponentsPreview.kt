@@ -15,6 +15,7 @@ fun ListComponentsPreview() {
             verticalArrangement = Arrangement.spacedBy(Dimensions.paddingMedium)
         ) {
             CardListItem(
+
                 data = CardListItemData(
                     title = "Character Name",
                     subTitle = listOf("Status", "Species", "Origin")

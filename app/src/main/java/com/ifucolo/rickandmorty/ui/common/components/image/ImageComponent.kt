@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
@@ -16,6 +17,7 @@ import coil.request.ImageRequest
 import com.ifucolo.rickandmorty.ui.theme.Dimensions
 import com.ifucolo.rickandmorty.ui.theme.RickAndMortyTheme
 
+const val IMAGE_COMPONENT_TEST_TAG = "image_component_test_tag"
 @Composable
 fun ImageComponent(
     modifier: Modifier = Modifier,
@@ -27,6 +29,7 @@ fun ImageComponent(
     when (imageRes) {
         is ImageResource.Drawable -> {
             Image(
+                modifier = modifier.testTag(IMAGE_COMPONENT_TEST_TAG),
                 painter = painterResource(id = imageRes.id),
                 contentDescription = title,
                 contentScale = ContentScale.Crop
@@ -36,7 +39,7 @@ fun ImageComponent(
             Icon(
                 imageVector = imageRes.vector,
                 contentDescription = title,
-                modifier = modifier,
+                modifier = modifier.testTag(IMAGE_COMPONENT_TEST_TAG),
                 tint = contentColor
             )
         }
@@ -48,7 +51,7 @@ fun ImageComponent(
                     .crossfade(true)
                     .build(),
                 contentDescription = title,
-                modifier = modifier
+                modifier = modifier.testTag(IMAGE_COMPONENT_TEST_TAG)
             )
         }
     }

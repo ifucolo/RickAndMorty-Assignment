@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -79,6 +80,7 @@ fun CharacterScreen(
     }
 }
 
+const val CHARACTER_SCREEN_TEST_TAG = "character_screen_test_tag"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CharacterContent(
@@ -140,6 +142,7 @@ fun CharacterContent(
         },
         snackbarHost = { AppSnackbarHost(snackBarController) },
         modifier = Modifier
+            .testTag(CHARACTER_SCREEN_TEST_TAG)
             .fillMaxSize()
             .nestedScroll(scrollBehavior.nestedScrollConnection),
     ) { innerPadding ->

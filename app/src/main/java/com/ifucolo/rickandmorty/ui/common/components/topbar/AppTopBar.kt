@@ -10,9 +10,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import com.ifucolo.rickandmorty.ui.common.components.texts.TitleLargeText
 import com.ifucolo.rickandmorty.ui.common.components.topbar.actions.AppBarActions
 
+const val APP_BAR_TEST_TAG = "app_bar_test_tag"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(
@@ -28,7 +30,7 @@ fun AppTopBar(
         AppBarCloseIconType.CLOSE -> Icons.Filled.Close
     }
     TopAppBar(
-        modifier = modifier,
+        modifier = modifier.testTag(APP_BAR_TEST_TAG),
         title = {
             TitleLargeText(
                 text = title,
@@ -46,7 +48,7 @@ fun AppTopBar(
                 ) {
                     Icon(
                         imageVector = navigationIcon,
-                        contentDescription = "Localized description"
+                        contentDescription = "back_icon"
                     )
                 }
             }

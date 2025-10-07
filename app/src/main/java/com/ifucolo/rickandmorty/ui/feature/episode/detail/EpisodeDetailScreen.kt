@@ -10,16 +10,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
-import com.ifucolo.rickandmorty.R
-import com.ifucolo.rickandmorty.ui.common.components.list.CardListItem
-import com.ifucolo.rickandmorty.ui.common.components.list.CardListItemData
 import com.ifucolo.rickandmorty.ui.common.components.list.EmptyItem
 import com.ifucolo.rickandmorty.ui.common.components.topbar.AppTopBar
+import com.ifucolo.rickandmorty.ui.feature.episode.detail.components.CharacterItem
 import com.ifucolo.rickandmorty.ui.theme.Dimensions
 import com.ifucolo.rickandmorty.ui.theme.RickAndMortyTheme
 
@@ -56,6 +53,7 @@ fun EpisodeDetailScreen(
     }
 }
 
+const val CHARACTER_LIST_TEST_TAG = "character_list_test_tag"
 @Composable
 private fun CharacterList(
     items: List<Int>,
@@ -63,7 +61,7 @@ private fun CharacterList(
     onCharacterClick: (Int) -> Unit
 ) {
     LazyColumn(
-        modifier = modifier.padding(horizontal = Dimensions.paddingMedium),
+        modifier = modifier.testTag(CHARACTER_LIST_TEST_TAG).padding(horizontal = Dimensions.paddingMedium),
         verticalArrangement = Arrangement.spacedBy(Dimensions.paddingMedium),
         contentPadding = PaddingValues(vertical = Dimensions.paddingMedium)
     ) {
@@ -82,26 +80,6 @@ private fun CharacterList(
         }
     }
 }
-
-
-@Composable
-private fun CharacterItem(
-    characterId: Int,
-    onCharacterClick: (Int) -> Unit
-) {
-    val title = stringResource(R.string.characterId, characterId)
-    val cardData = remember(characterId) {
-        CardListItemData(
-            title = title
-        )
-    }
-
-    CardListItem(
-        data = cardData,
-        onCardClick = { onCharacterClick(characterId) }
-    )
-}
-
 
 @Preview(name = "Episode Detail – With Characters", showBackground = true, widthDp = 360)
 @Composable

@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
@@ -14,6 +13,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -95,6 +95,7 @@ private fun EpisodesContent(
         derivedStateOf { lazyPagingItems.loadState.refresh is LoadState.Loading }
     }
     Scaffold(
+        modifier = Modifier.testTag("EpisodesScreen"),
         snackbarHost = { AppSnackbarHost(snackBarController) }
     ) { padding ->
         PullToRefreshBox(
@@ -107,7 +108,7 @@ private fun EpisodesContent(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(horizontal = Dimensions.paddingMedium),
-                verticalArrangement = Arrangement.spacedBy(Dimensions.paddingMedium)
+                verticalArrangement = Arrangement.spacedBy(Dimensions.paddingMedium),
             ) {
                 item(key = "last_refreshed") {
                     LastRefreshedItem(text = lastRefreshed)

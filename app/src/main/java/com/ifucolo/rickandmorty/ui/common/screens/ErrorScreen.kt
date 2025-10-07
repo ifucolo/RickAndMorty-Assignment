@@ -11,6 +11,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.ifucolo.rickandmorty.R
@@ -20,6 +21,8 @@ import com.ifucolo.rickandmorty.ui.common.components.texts.TitleLargeText
 import com.ifucolo.rickandmorty.ui.common.components.topbar.AppTopBar
 import com.ifucolo.rickandmorty.ui.theme.Dimensions
 
+const val ERROR_STATE_SCREEN_TEST_TAG = "error_state_screen_test_tag"
+const val ERROR_TRY_AGAIN_BUTTON_TEST_TAG = "error_try_again_button_test_tag"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ErrorStateScreen(
@@ -33,7 +36,7 @@ fun ErrorStateScreen(
     contentPadding: PaddingValues = PaddingValues(Dimensions.paddingMedium)
 ) {
     Scaffold(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.testTag(ERROR_STATE_SCREEN_TEST_TAG).fillMaxSize(),
         topBar = {
             onBackPressed?.let {
                 AppTopBar(
@@ -74,6 +77,7 @@ fun ErrorStateScreen(
             onRetry?.let {
                 PrimaryButton(
                     modifier = Modifier
+                        .testTag(ERROR_TRY_AGAIN_BUTTON_TEST_TAG)
                         .padding(top = Dimensions.paddingLarge),
                     text = retryText,
                     onClick = onRetry

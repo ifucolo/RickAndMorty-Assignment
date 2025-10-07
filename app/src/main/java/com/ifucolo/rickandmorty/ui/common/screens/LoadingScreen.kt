@@ -11,12 +11,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.ifucolo.rickandmorty.R
 import com.ifucolo.rickandmorty.ui.common.components.texts.BodyLargeText
 import com.ifucolo.rickandmorty.ui.theme.Dimensions
 
+const val LOADING_SCREEN_TEST_TAG = "loading_screen_test_tag"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoadingStateScreen(
@@ -26,7 +28,7 @@ fun LoadingStateScreen(
     showProgressIndicator: Boolean = true
 ) {
     Scaffold(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.testTag(LOADING_SCREEN_TEST_TAG).fillMaxSize()
     ){ padding ->
         Column(
             modifier = modifier

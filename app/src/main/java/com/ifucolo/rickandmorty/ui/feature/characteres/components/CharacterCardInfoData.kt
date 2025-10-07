@@ -14,19 +14,19 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.ifucolo.rickandmorty.ui.common.components.texts.BodyMediumText
 import com.ifucolo.rickandmorty.ui.theme.Dimensions
 import com.ifucolo.rickandmorty.ui.theme.RickAndMortyTheme
 
+const val CHARACTER_CARD_INFO_TEST_TAG = "character_card_info_test_tag"
 @Immutable
 data class CharacterCardInfoData(
     val icon: ImageVector,
@@ -39,7 +39,7 @@ fun CharacterCardInfoComponent(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.testTag(CHARACTER_CARD_INFO_TEST_TAG).fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = Dimensions.elevation)
     ) {
         Column {

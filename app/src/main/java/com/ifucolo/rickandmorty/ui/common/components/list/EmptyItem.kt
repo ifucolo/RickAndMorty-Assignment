@@ -5,17 +5,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.ifucolo.rickandmorty.R
 import com.ifucolo.rickandmorty.ui.common.components.texts.BodyLargeText
 
+const val EMPTY_ITEM_TEST_TAG = "empty_item_test_tag"
 @Composable
 fun EmptyItem(
     modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.testTag(EMPTY_ITEM_TEST_TAG).fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {
         BodyLargeText(
