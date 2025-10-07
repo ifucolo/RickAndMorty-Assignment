@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.androidTest
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -18,9 +20,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.ifucolo.rickandmorty.HiltTestRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -87,7 +88,7 @@ dependencies {
     implementation(libs.androidx.room.paging)
     ksp(libs.androidx.room.compiler)
 
-    // --- DataStore (for “last refreshed”) ---
+    // --- DataStore---
     implementation(libs.androidx.datastore.preferences)
 
     // --- Hilt (DI) ---
@@ -122,9 +123,15 @@ dependencies {
     androidTestImplementation(libs.turbine)
     androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.room.testing)
+    androidTestImplementation(libs.mockito.kotlin)
+    androidTestImplementation(libs.mockito.inline)
+    androidTestImplementation(libs.mockwebserver)
 
     // Debug-only for Compose test manifest & tooling
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     testImplementation(kotlin("test"))
+
+    androidTestImplementation(libs.dagger.hilt.android.testing)
+    kspAndroidTest(libs.dagger.hilt.compiler)
 }
