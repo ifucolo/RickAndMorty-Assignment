@@ -8,7 +8,7 @@
     <string name="loadingMessage">Just a moment,\ngetting everything ready for you…</string>
 
     <string name="endOfTheList">"You've reached the end of the list!"</string>
-    <string name="episodeCode">episode Code: %1$s</string>
+    <string name="episodeCode">episode code: %1$s</string>
     <string name="airDate">Air date: %1$s </string>
     <string name="characterId">Character ID: %1$d</string>
 
