@@ -7,7 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class RickMortyRouteViewModel @Inject constructor() : ViewModel() {
+open class RickMortyRouteViewModel @Inject constructor() : ViewModel() {
 
     val backStack = mutableStateListOf<RickMortyRoutes>()
 
