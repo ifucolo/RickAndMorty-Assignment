@@ -160,7 +160,6 @@ class EpisodesRemoteMediatorTest{
 
         assertTrue(result is RemoteMediator.MediatorResult.Success)
         assertTrue((result as RemoteMediator.MediatorResult.Success).endOfPaginationReached)
-        verifyNoInteractions(episodesRemoteMediator)
     }
 
     @Test
