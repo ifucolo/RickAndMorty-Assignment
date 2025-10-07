@@ -39,7 +39,7 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindEpisodesRefresher(
-        PagerFactoryImpl: PagerFactoryImpl
+    abstract fun bindPagerFactory(
+        pagerFactoryImpl: PagerFactoryImpl
     ): PagerFactory
 }
