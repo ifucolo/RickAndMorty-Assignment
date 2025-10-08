@@ -23,6 +23,8 @@ class EpisodeRepositoryImpl @Inject constructor(
     //use provider to always have a fresh instance, because the pager is tied to a single page lifecycle, and resuing it can cause issues, like crashes, race conditions, etc.
     private val episodesRemoteMediator: Provider<EpisodesRemoteMediator>,
     private val local: RickAndMortyLocalDataSource,
+    //to make it more testable, because before i was using the Pager constructor directly in the
+    //repository, making it hard to test
     private val pagerFactory: PagerFactory
 ) : EpisodeRepository {
 

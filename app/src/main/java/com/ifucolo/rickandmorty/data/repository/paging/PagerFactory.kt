@@ -11,9 +11,11 @@ interface PagerFactory {
     fun create(
         config: PagingConfig = PagingConfig(
             pageSize = 20,
-            initialLoadSize = 20,
-            prefetchDistance = 2,
-            enablePlaceholders = false
+            initialLoadSize = 60,
+            prefetchDistance = 10,
+            enablePlaceholders = true,
+            jumpThreshold = 20 * 3,
+            maxSize = 200
         ),
         remoteMediator: RemoteMediator<Int, EpisodeEntity>,
         pagingSourceFactory: () -> PagingSource<Int, EpisodeEntity>
