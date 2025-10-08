@@ -78,7 +78,7 @@ Gradle setup includes:
 
 **Iago Fucolo**  
 Android Engineer • Kotlin & Architecture Enthusiast  
-[LinkedIn]([https://www.linkedin.com/in/iagofucolo/](https://www.linkedin.com/in/ifucolo/)) • [Medium](https://medium.com/@ifucolo)
+[LinkedIn](https://www.linkedin.com/in/ifucolo/) • [Medium](https://medium.com/@ifucolo)
 
 ---
 
@@ -96,7 +96,21 @@ You may obtain a copy of the License at
 
 ---
 
-## 🌟 Screenshots (optional)
-| Episodes Screen | Characters Screen |
-|:----------------:|:----------------:|
-| ![Episodes](docs/screenshots/episodes.png) | ![Characters](docs/screenshots/characters.png) |
+## 🌟 Screenshots
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/ifucolo/RickAndMorty-Assignment/blob/master/screenshoots/EpisodesScreen.png" width="220" alt="EpisodesScreen"/><br/>
+      <sub><b>Episodes</b></sub>
+    </td>
+    <td align="center">
+      <img src="https://github.com/ifucolo/RickAndMorty-Assignment/blob/master/screenshoots/EpisodeDetailScreen.png" width="220" alt="EpisodeDetailScreen"/><br/>
+      <sub><b>Episode Details</b></sub>
+    </td>
+    <td align="center">
+      <img src="https://github.com/ifucolo/RickAndMorty-Assignment/blob/master/screenshoots/CharacterDetailScreen.png" width="220" alt="CharacterDetailScreen"/><br/>
+      <sub><b>Character Details</b></sub>
+    </td>
+  </tr>
+</table>
