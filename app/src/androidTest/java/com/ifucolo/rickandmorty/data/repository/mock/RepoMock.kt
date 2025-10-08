@@ -1,6 +1,7 @@
 package com.ifucolo.rickandmorty.data.repository.mock
 
 import com.ifucolo.rickandmorty.domain.CharacterDetail
+import com.ifucolo.rickandmorty.domain.CharacterId
 import com.ifucolo.rickandmorty.domain.Episode
 
 
@@ -29,7 +30,7 @@ fun episode(
     name: String = "Pilot",
     airDateDisplay: String = "02/12/2013",
     code: String = "S01E01",
-    characterIds: List<Int> = listOf(1, 2, 3)
+    characterIds: List<CharacterId> = listOf(CharacterId(1), CharacterId(2), CharacterId(3))
 ): Episode {
     return Episode(
         id = id,

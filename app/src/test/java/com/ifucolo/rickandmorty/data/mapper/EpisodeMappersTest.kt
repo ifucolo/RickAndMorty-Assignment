@@ -2,6 +2,7 @@ package com.ifucolo.rickandmorty.data.mapper
 
 import com.ifucolo.rickandmorty.data.local.mock.episodeEntity
 import com.ifucolo.rickandmorty.data.mock.episodeDto
+import com.ifucolo.rickandmorty.domain.CharacterId
 import junit.framework.TestCase.assertTrue
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -75,6 +76,6 @@ class EpisodeMappersTest {
         assertEquals("Close Rick-counters of the Rick Kind", domain.name)
         assertEquals("December 2, 2013", domain.airDateDisplay)
         assertEquals("S01E10", domain.code)
-        assertEquals(listOf(1, 2), domain.characterIds)
+        assertEquals(domain.characterIds.size, listOf(CharacterId(1), CharacterId(2)).size)
     }
 }

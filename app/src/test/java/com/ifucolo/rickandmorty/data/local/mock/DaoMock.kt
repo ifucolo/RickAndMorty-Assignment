@@ -13,12 +13,12 @@ fun characterEntity(
     originName = "Earth", imageUrl = "https://example.com/summer.png", episodeCount = 51
 )
 
-fun episodeEntity(id: Int, name: String? = null) = EpisodeEntity(
+fun episodeEntity(id: Int, name: String? = null, characters: List<Int> = listOf(1, 2)) = EpisodeEntity(
     id = id,
     name = name?: "Ep $id",
     code = "S01E$id",
     airDate = "December 2, 2013",
-    characterIds = listOf(1, 2)
+    characterIds = characters
 )
 
 fun episodesList(range: IntRange) = range.map { episodeEntity(it) }

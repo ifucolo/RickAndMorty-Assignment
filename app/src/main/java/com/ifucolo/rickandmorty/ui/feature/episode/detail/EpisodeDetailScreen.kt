@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
+import com.ifucolo.rickandmorty.domain.CharacterId
 import com.ifucolo.rickandmorty.ui.common.components.list.EmptyItem
 import com.ifucolo.rickandmorty.ui.common.components.topbar.AppTopBar
 import com.ifucolo.rickandmorty.ui.feature.episode.detail.components.CharacterItem
@@ -24,7 +25,7 @@ import com.ifucolo.rickandmorty.ui.theme.RickAndMortyTheme
 @Composable
 fun EpisodeDetailScreen(
     title: String,
-    items: List<Int>,
+    items: List<CharacterId>,
     onCharacterClick: (Int) -> Unit,
     onBackPressed: () -> Unit
 ) {
@@ -56,7 +57,7 @@ fun EpisodeDetailScreen(
 const val CHARACTER_LIST_TEST_TAG = "character_list_test_tag"
 @Composable
 private fun CharacterList(
-    items: List<Int>,
+    items: List<CharacterId>,
     modifier: Modifier = Modifier,
     onCharacterClick: (Int) -> Unit
 ) {
@@ -70,10 +71,10 @@ private fun CharacterList(
         } else {
             items(
                 items = items,
-                key = { it }
-            ) { id ->
+                key = { it.value }
+            ) { characterId ->
                 CharacterItem(
-                    characterId = id,
+                    characterId = characterId.value,
                     onCharacterClick = onCharacterClick
                 )
             }
@@ -87,7 +88,7 @@ private fun EpisodeDetailScreenPreview_Populated() {
     RickAndMortyTheme {
         EpisodeDetailScreen(
             title = "S01E01 • Pilot",
-            items = listOf(1, 2, 35, 183),
+            items = listOf(CharacterId(1), CharacterId(2), CharacterId(35), CharacterId(183)),
             onCharacterClick = {},
             onBackPressed = {}
         )

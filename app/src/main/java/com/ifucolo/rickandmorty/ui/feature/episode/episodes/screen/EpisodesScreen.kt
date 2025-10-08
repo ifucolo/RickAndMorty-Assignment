@@ -23,6 +23,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import com.ifucolo.rickandmorty.R
+import com.ifucolo.rickandmorty.domain.CharacterId
 import com.ifucolo.rickandmorty.domain.Episode
 import com.ifucolo.rickandmorty.ui.common.components.list.CardListItem
 import com.ifucolo.rickandmorty.ui.common.components.list.CardListItemData
@@ -183,5 +184,5 @@ private fun sampleEpisode(
     name = name,
     airDateDisplay = air,
     code = code,
-    characterIds = listOf(1, 2, 3)
+    characterIds = listOf(CharacterId(1), CharacterId(2), CharacterId(3))
 )
